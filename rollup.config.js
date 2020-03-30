@@ -15,9 +15,12 @@ export default [
       //Change output library name
       name: 'library',
       file: pkg.browser,
-      format: 'umd'
+      format: 'umd',
+      globals: {
+        "@kubric/litedash": "litedash",
+      }
     },
-
+    external: ["@kubric/litedash"],
     plugins: [
       //Remove if not a typescript library
       typescript(),
@@ -53,6 +56,7 @@ export default [
         format: 'es'
       }
     ],
+    external: ["@kubric/litedash"],
     plugins: [
       //Remove if not a typescript library
       typescript()
