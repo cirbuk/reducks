@@ -17,11 +17,13 @@ const toCamelCase = (str: string = '', splitBy: string = '_') =>
  * @param types
  * @param prefix
  */
-export const getTypes = (types: string[] = [], prefix: string = ''): TypesObject =>
-  types.reduce((acc: TypesObject, type: string) => {
-    acc[type] = `${prefix}/${type}`;
+export const getTypes = (types: string[] = [], prefix: string = ''): TypesObject => {
+  prefix = prefix.length === 0 ? prefix : `${prefix}/`;
+  return types.reduce((acc: TypesObject, type: string) => {
+    acc[type] = `${prefix}${type}`;
     return acc;
   }, {});
+}
 
 /**
  * Accepts an array of types and returns actions object. Every action fn accepts a payload and returns an action object
@@ -36,7 +38,7 @@ export const getActions = (types: TypesObject = {}, { transform }: GetActionsOpt
     .reduce((acc: ActionsObject, typeKey: string) => {
       acc[toCamelCase(typeKey)] = payload => ({
         type: types[typeKey],
-        payload: transform ? transform(payload) : payload,
+        payload: transform ? transform(payload, typeKey, types) : payload,
       });
       return acc;
     }, {});

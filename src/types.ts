@@ -14,7 +14,7 @@ export interface ActionsObject {
 }
 
 export interface GetActionsOptions {
-  transform?(payload: any): any
+  transform?(payload: any, typeKey: string, types: TypesObject): any
 }
 
 type DispatcherFunction = (dispatch: Function) => void;
