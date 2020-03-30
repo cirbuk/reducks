@@ -1,5 +1,5 @@
 {
-  "name": "reducks",
+  "name": "@kubric/reducks",
   "version": "1.0.0",
   "description": "Reducks utilities for Redux",
   "main": "dist/index.cjs.js",
